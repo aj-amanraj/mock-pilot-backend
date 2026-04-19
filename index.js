@@ -10,10 +10,23 @@ import interviewRouter from "./routes/interview.route.js"
 import paymentRouter from "./routes/payment.route.js"
 
 const app = express()
+
+const allowedOrigins = [
+    "https://mock-pilot-frontend.vercel.app/"
+]
+
 app.use(cors({
-    origin:"http://localhost:5173",
-    credentials:true
-}))
+  origin: function (origin, callback) {
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("CORS not allowed"));
+    }
+  },
+  credentials: true
+}));
 
 app.use(express.json())
 app.use(cookieParser())
