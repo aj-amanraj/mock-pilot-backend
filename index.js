@@ -12,7 +12,7 @@ import paymentRouter from "./routes/payment.route.js"
 const app = express()
 
 const allowedOrigins = [
-    "https://mock-pilot-frontend.vercel.app/"
+    "https://mock-pilot-frontend.vercel.app"
 ]
 
 app.use(cors({
